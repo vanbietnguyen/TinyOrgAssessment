@@ -1,5 +1,6 @@
 {
-  "name": "template",
+  "name": "tinyorganicsassessment",
+  "proxy": "http://127.0.0.1:8000/",
   "version": "1.0.0",
   "description": "",
   "main": "server/app.js",
@@ -8,14 +9,13 @@
     "dev": "NODE_ENV=development webpack serve --config ./webpack/webpack.dev.js",
     "test": "jest --detectOpenHandles",
     "build": "NODE_ENV=production webpack --config ./webpack/webpack.prod.js",
-    "serve": "NODE_ENV=production PORT=3000 node server/index.js",
     "analyze": "NODE_ENV=production ANALYZE=true webpack --config ./webpack/webpack.prod.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-
+    "axios": "^0.22.0"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
