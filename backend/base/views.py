@@ -6,7 +6,7 @@ from rest_framework.response import Response
 
 # Create your views here.
 @api_view(['GET'])
-def getRoutes(request):
+def getRecipeRoutes(request):
     routes = [
         # recipes
         '/api/recipes',
