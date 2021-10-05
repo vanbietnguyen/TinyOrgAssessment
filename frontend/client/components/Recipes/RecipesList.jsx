@@ -1,19 +1,16 @@
 import React, { component, useState, useEffect } from 'react';
 import Recipe from './Recipe'
+import '../../bootstrap.min.css'
+import { Container, Row, Col } from 'react-bootstrap'
 
 const RecipesList = ({recList}) => {
 
-
     const recipes = recList.map((recipe, inx) => {
-        console.log(recipe)
-        return <Recipe key={inx} id={recipe.id} recipe={recipe} />;
+        return <Recipe key={inx} id={recipe._id} recipe={recipe} />;
       });
 
   return (
-    <div>
-
-        <ul>{recipes}</ul>
-    </div>
+    <Row>{recipes}</Row>
   );
 };
 

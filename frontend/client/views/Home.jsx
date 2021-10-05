@@ -1,6 +1,10 @@
 import React, { component, useEffect, useState } from 'react';
 import RecipesService from '../services/RecipesService';
 import RecipesList from '../components/Recipes/RecipesList'
+import '../bootstrap.min.css'
+import { Container } from 'react-bootstrap'
+
+
 const Home = () => {
   const [recList, setRecList] = useState([]);
 
@@ -14,9 +18,12 @@ const Home = () => {
   }, []);
 
   return (
-    <>
-      <RecipesList recList={recList}/>
-    </>
+    <main className="py-3">
+      <Container>
+        <RecipesList recList={recList}/>
+      </Container>
+    </main>
+
   );
 };
 
