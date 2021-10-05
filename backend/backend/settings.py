@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-z)*4zd%@#^le)arc=)#(pfk3e^dhq1d5-x=-n*ot3lc=*2&n))'
-AUTH_USER_MODEL = 'base.CustomUser'
+AUTH_USER_MODEL = 'users.CustomUser'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -19,9 +19,9 @@ ALLOWED_HOSTS = []
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 AUTHENTICATION_BACKENDS = (
-        "django.contrib.auth.backends.ModelBackend",    
-        "allauth.account.auth_backends.AuthenticationBackend",
-    )
+    "django.contrib.auth.backends.ModelBackend",    
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
 
 SITE_ID = 1 
 ACCOUNT_EMAIL_REQUIRED = True
@@ -32,10 +32,8 @@ ACCOUNT_UNIQUE_EMAIL = True
 
 # Rest Framework config. 
 REST_FRAMEWORK = {    
-    'DATETIME_FORMAT': "%m/%d/%Y %I:%M%P",    
-    'DEFAULT_AUTHENTICATION_CLASSES': [        
-            'rest_framework.authentication.TokenAuthentication',    
-    ],
+        'DATETIME_FORMAT': "%m/%d/%Y %I:%M%P",    
+        'DEFAULT_AUTHENTICATION_CLASSES': ['rest_framework.authentication.TokenAuthentication',],
 }
 
 # Application definition
@@ -61,6 +59,7 @@ INSTALLED_APPS = [
 
     # local apps
     'base.apps.BaseConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -153,4 +152,9 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOWED_ORIGINS = [    
+    'http://localhost:3000',
+    'http://localhost:8080'
+]
 
