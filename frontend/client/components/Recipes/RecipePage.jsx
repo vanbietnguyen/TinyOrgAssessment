@@ -7,16 +7,35 @@ import { Container, Row, Col, Card, Image, ListGroup, Button } from 'react-boots
 
 const RecipePage = ({ match }) => {
     const [recipe, setRecipe] = useState([]);
+    const [allergens, setAllergens] = useState([]);
+    
 
     useEffect(async () => {
         const result = await RecipesService.getRecipes('/api/recipes');
         // console.log(result, 'in recipe page')
-        const recipe = result.find((r) => {
+        const recipe = await result.find((r) => {
             console.log(r)
             return r._id == match.params.id
           })
           setRecipe(recipe);
     }, []);
+
+    useEffect(async () => {
+      const result = await RecipesService.getRecipes('/api/recipes');
+      
+      const recipe = await result.find((r) => {
+          return r._id == match.params.id
+        })
+
+        // setAllergens(recipe.allergen)
+        // recipe.allergens.map((a) => allergenArray.push(a))
+        setAllergens(recipe.allergens)
+
+  }, []);
+
+    // const allergenDiv = 
+  
+
 
   return (
         <Col sm={12} md={6} lg={4} xl={3}>
@@ -28,12 +47,9 @@ const RecipePage = ({ match }) => {
 
             
             <Card.Title as="div"><strong>{recipe.name}</strong></Card.Title>
-
-            <Card.Text className="my-3">
-              
-                {/* ingredients */}
-                ingredients that are in here!
-            </Card.Text>
+            
+             {allergens.length ? allergens.map((a , i) => <Card.Text key={i}>{a}</Card.Text>) : 'none' }
+          
           </Card.Body>
         </Card>
       </Col>

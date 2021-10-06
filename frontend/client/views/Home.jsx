@@ -10,7 +10,7 @@ const Home = () => {
 
   useEffect(async () => {
     const result = await RecipesService.getRecipes('/api/recipes');
-
+    console.log(result, 'result')
     // const result = await RecipesService.getRecipes(
     //   'https://60f5adf918254c00176dffc8.mockapi.io/api/v1/recipes/'
     // );

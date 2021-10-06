@@ -20,7 +20,7 @@ const App = () => {
           <Container>
             <Route path="/Register" component={Register} />
             <Route path="/" component={Home} exact />
-            <Route path="/recipe/:id" component={RecipePage} />
+            <Route path="/recipes/:id" component={RecipePage} />
           </Container>
 
         </main>
