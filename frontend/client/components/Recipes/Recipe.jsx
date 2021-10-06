@@ -4,6 +4,11 @@ import { Container, Row, Col, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 const Recipe = ({ id, recipe }) => {
+  
+  const allergens = recipe.allergens.map((allergen, inx) => {
+    return <div key={inx}>{allergen}</div> ;
+  });
+  // const allergens = recipe.allergens.map((a) => console.log(a))
 
   return (
  
@@ -23,8 +28,7 @@ const Recipe = ({ id, recipe }) => {
              
               <Card.Text className="my-3">
                 
-                  {/* ingredients */}
-                  ingredients that are in here!
+                  {allergens}
                 
               </Card.Text>
             </Card.Body>
