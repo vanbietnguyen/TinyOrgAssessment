@@ -3,7 +3,7 @@ from django.urls import path
 from base.views import user_views as views
 
 urlpatterns = [
-    path('login/', views.MyTokenObtainPairView.as_view(), 
+    path('users/login/', views.MyTokenObtainPairView.as_view(), 
         name='token_obtain_pair'),
     
     path('signup/', views.signupUser, name = 'signup'),
