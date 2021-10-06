@@ -27,7 +27,7 @@ class UserSerializerWithToken(UserSerializer):
     token = SerializerMethodField(read_only=True)
 
     class Meta:
-        model = User
+        model = CustomUser
         fields = ['id', '_id', 'username', 'email', 'isAdmin', 'token', 'allergens']
 
     def get_token(self, obj):

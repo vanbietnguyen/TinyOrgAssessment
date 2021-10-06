@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const Recipe = ({ id, recipe }) => {
   
   const allergens = recipe.allergens.map((allergen, inx) => {
-    return <div key={inx}>{allergen}</div> ;
+    return <Card.Text key={inx}>{allergen}</Card.Text> ;
   });
   // const allergens = recipe.allergens.map((a) => console.log(a))
 
@@ -14,23 +14,17 @@ const Recipe = ({ id, recipe }) => {
  
         <Col sm={12} md={6} lg={4} xl={3}>
           <Card className="my-3 p-3 rounded">
-            <Link to={`/recipe/${id}`}>
+            <Link to={`/recipes/${id}`}>
                 {/* <Card.Img src={recipe.image} />  */}
               <Card.Img src='https://image.shutterstock.com/image-vector/default-ui-image-placeholder-wireframes-600w-1037719192.jpg' /> 
             </Link>
 
             <Card.Body>
 
-              <Link to={`/recipe/${id}`}>
+              <Link to={`/recipes/${id}`}>
                 <Card.Title as="div"><strong>{recipe.name}</strong></Card.Title>
               </Link> 
-
-             
-              <Card.Text className="my-3">
-                
                   {allergens}
-                
-              </Card.Text>
             </Card.Body>
           </Card>
         </Col>

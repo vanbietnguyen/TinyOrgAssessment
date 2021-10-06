@@ -1,13 +1,12 @@
 from django.contrib import admin
 from django.urls import path, include
-
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('base.urls')),
-    # auth
+
+    path('api/recipes', include('base.urls.recipe_urls')),
+
+    path('api/users', include('base.urls.user_urls')),
+
 ]
