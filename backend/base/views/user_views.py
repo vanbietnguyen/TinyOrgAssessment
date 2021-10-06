@@ -14,10 +14,11 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from base.serializers import UserSerializer, UserSerializerWithToken
 
 ####################### AUTH/TOKEN ##################################
+
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
-
+        print('we are in token validator')
         # Add custom claims
         data['username'] = self.user.username
         data['email'] = self.user.email
@@ -48,6 +49,14 @@ def signupUser(request):
     except:
         message = { 'detail': 'User with this email already exists' }
         return Response(message, status = status.HTTP_400_BAD_REQUEST)
+
+# @api_view(['POST'])
+# def loginUser(request):
+#     print('in loginview')
+#     # data = request.data
+#     # serializer = UserSerializerWithToken(user, many = False)
+#     # return Response(serializer.data)
+#     return Response('data')
 
 # @api_view(['GET'])
 # def getUserProfile(request):
