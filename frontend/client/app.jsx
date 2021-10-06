@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import RecipePage from './components/Recipes/RecipePage';
 import AuthContainer from './views/AuthContainer'
+import Login from './components/Auth/Login';
 import Home from './views/Home'
 import './bootstrap.min.css'
 import { Container } from 'react-bootstrap'
@@ -18,8 +19,9 @@ const App = () => {
 
           <Container>
             <Route path="/auth" component={AuthContainer} />
-            <Route path="/" component={Home} exact />
+            <Route path="/main" component={Home} />
             <Route path="/recipes/:id" component={RecipePage} />
+            <Route path="/" component={Login} exact/>
           </Container>
 
         </main>

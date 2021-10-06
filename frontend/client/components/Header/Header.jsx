@@ -9,7 +9,7 @@ const Header = () => {
       <Navbar bg="light" expand="lg">
         <Container>
 
-          <LinkContainer to="/">
+          <LinkContainer to="/main">
             <Navbar.Brand>React-Bootstrap</Navbar.Brand>
           </LinkContainer>
           
@@ -18,7 +18,7 @@ const Header = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
 
-            <LinkContainer to="/">
+            <LinkContainer to="/main">
               <Nav.Link>Home</Nav.Link>
             </LinkContainer>
 
