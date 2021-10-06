@@ -3,7 +3,11 @@ from django.http import JsonResponse, HttpResponse
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import RecipeSerializer
+
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+
+from .serializers import RecipeSerializer, UserSerializer
 from .models import Recipe
 
 # Create your views here.
@@ -33,3 +37,26 @@ def getRecipe(request, pk):
     serializer = RecipeSerializer(recipe, many=False)
     
     return Response(serializer.data)
+
+# token
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        data = super().validate(attrs)
+
+        # Add custom claims
+        data['username'] = self.user.username
+        data['email'] = self.user.email
+        # token['allergens'] = user.allergens
+        # ...
+
+        return data
+
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
+
+@api_view(['GET'])
+def getUserProfile(request):
+    user = request.user
+    serializer = UserSerializer(user, many=False)
+    return Response(serializer.data)
+
