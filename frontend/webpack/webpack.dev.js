@@ -25,9 +25,12 @@ module.exports = merge(common, {
     },
     proxy: {
       '/api/**': {
-        target: 'http://localhost:3000/',
+        target: 'http://localhost:8000/',
         logLevel: 'debug',
-      },
+      }, '/images/**': {
+        target: 'http://localhost:8000/',
+        logLevel: 'debug',
+      }
     },
   },
   resolve: {
