@@ -3,7 +3,7 @@ import RecipesService from '../services/RecipesService';
 import RecipesList from '../components/Recipes/RecipesList'
 import '../bootstrap.min.css'
 import { Container } from 'react-bootstrap'
-import UserDbService from '../services/TokenService';
+
 import TokenStorage from '../db/token'
 const tokenStorage = new TokenStorage();
 
@@ -20,12 +20,8 @@ const Home = () => {
 
       if(!acc.includes(curr)) {
         for(let allergen of allergens) {
-          if(curr.allergens.includes(allergen)) {
-            console.log('allergies!!!!', allergen)
-            isBad = true
-          }
+          if(curr.allergens.includes(allergen)) isBad = true
         }
-        
       }
 
       isBad ? acc : acc.push(curr)

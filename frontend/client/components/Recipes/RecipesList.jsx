@@ -6,6 +6,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 const RecipesList = ({recList}) => {
 
     const recipes = recList.map((recipe, inx) => {
+
         return <Recipe key={inx} id={recipe._id} recipe={recipe} />;
       });
 

@@ -10,7 +10,8 @@ const Header = () => {
         <Container>
 
           <LinkContainer to="/main">
-            <Navbar.Brand>React-Bootstrap</Navbar.Brand>
+            <Navbar.Brand src="https://cdn.shopify.com/s/files/1/0018/4650/9667/files/Tiny-Logos-ALL-01_1_6f7a4e61-2612-4f4b-8327-62b0ed2413be_180x.png?v=1624156432">Tiny Organics</Navbar.Brand>
+            
           </LinkContainer>
           
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

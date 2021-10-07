@@ -27,7 +27,10 @@ module.exports = merge(common, {
       '/api/**': {
         target: 'http://localhost:8000/',
         logLevel: 'debug',
-      },
+      }, '/images/**': {
+        target: 'http://localhost:8000/',
+        logLevel: 'debug',
+      }
     },
   },
   resolve: {

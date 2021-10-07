@@ -6,6 +6,8 @@ import RecipePage from './components/Recipes/RecipePage';
 import AuthContainer from './views/AuthContainer'
 import Login from './components/Auth/Login';
 import Home from './views/Home'
+import ProtectedRoute from './views/ProtectedRoute'
+import UnprotectedRoute from './views/UnprotectedRoute'
 import './bootstrap.min.css'
 import { Container } from 'react-bootstrap'
 import './global.scss';
@@ -18,10 +20,10 @@ const App = () => {
         <main className="py-3">
 
           <Container>
-            <Route path="/auth" component={AuthContainer} />
-            <Route path="/main" component={Home} />
-            <Route path="/recipes/:id" component={RecipePage} />
-            <Route path="/" component={Login} exact/>
+            <UnprotectedRoute path="/auth" component={AuthContainer} />
+            <ProtectedRoute path="/main" component={Home} />
+            <ProtectedRoute path="/recipes/:id" component={RecipePage} />
+            <UnprotectedRoute path="/" component={Login} exact/>
           </Container>
 
         </main>

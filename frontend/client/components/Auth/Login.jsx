@@ -43,7 +43,7 @@ const Login = ( {Location, history }) => {
         if (!username || !password) return setShowError(true);
         postLogin();
     };
-
+  
   if (isAuthenticated) {
     return <Redirect to='/main' />;
   }
