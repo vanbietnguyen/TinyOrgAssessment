@@ -10,6 +10,8 @@ class Recipe(models.Model):
     ingredients = models.CharField(max_length=200, null=True, blank=True)
     _id = models.AutoField(primary_key=True, editable=False)
     createdAt = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(null=True, blank=True,
+                              default='placeholder.png')
 
 class CustomUser(AbstractUser):
     allergens = models.JSONField(models.CharField(max_length=200), null=True, blank=True)

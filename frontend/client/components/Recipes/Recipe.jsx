@@ -15,8 +15,8 @@ const Recipe = ({ id, recipe }) => {
         <Col sm={12} md={6} lg={4} xl={3}>
           <Card className="my-3 p-3 rounded">
             <Link to={`/recipes/${id}`}>
-                {/* <Card.Img src={recipe.image} />  */}
-              <Card.Img src='https://image.shutterstock.com/image-vector/default-ui-image-placeholder-wireframes-600w-1037719192.jpg' /> 
+                <Card.Img src={`${recipe.image}`} /> 
+              
             </Link>
 
             <Card.Body>

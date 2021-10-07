@@ -4,17 +4,32 @@ import RecipesList from '../components/Recipes/RecipesList'
 import '../bootstrap.min.css'
 import { Container } from 'react-bootstrap'
 
+import TokenStorage from '../db/token'
+const tokenStorage = new TokenStorage();
 
 const Home = () => {
   const [recList, setRecList] = useState([]);
 
   useEffect(async () => {
-    const result = await RecipesService.getRecipes('/api/recipes');
-    console.log(result, 'result')
-    // const result = await RecipesService.getRecipes(
-    //   'https://60f5adf918254c00176dffc8.mockapi.io/api/v1/recipes/'
-    // );
-    setRecList(result);
+    const recipes = await RecipesService.getRecipes('/api/recipes');
+
+    let allergens = tokenStorage.getAllergen().split(',')
+
+    let parsedRecipes = recipes.reduce((acc, curr) => {
+      let isBad = false
+
+      if(!acc.includes(curr)) {
+        for(let allergen of allergens) {
+          if(curr.allergens.includes(allergen)) isBad = true
+        }
+      }
+
+      isBad ? acc : acc.push(curr)
+      return acc
+
+    }, [])
+
+    setRecList(parsedRecipes);
   }, []);
 
   return (

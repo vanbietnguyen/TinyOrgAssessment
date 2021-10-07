@@ -38,10 +38,10 @@ const RecipePage = ({ match }) => {
 
 
   return (
-        <Col sm={12} md={6} lg={4} xl={3}>
-        <Card className="my-3 p-3 rounded">
+
+        <Card className="my-3 p-3 rounded justify-content-md-center">
               {/* <Card.Img src={recipe.image} />  */}
-            <Card.Img src='https://image.shutterstock.com/image-vector/default-ui-image-placeholder-wireframes-600w-1037719192.jpg' /> 
+            <Card.Img src={recipe.image} />
 
           <Card.Body>
 
@@ -52,7 +52,6 @@ const RecipePage = ({ match }) => {
           
           </Card.Body>
         </Card>
-      </Col>
   );
 };
 
