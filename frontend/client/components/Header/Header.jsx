@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../bootstrap.min.css'
 import { Navbar, Nav, NavDropdown, Container, Row } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
+import Logout from '../Auth/Logout'
 
-const Header = () => {
+const Header = ({ isLogin, setIsLogin }) => {
+
+  const [userStat, setUserStat] = useState(false);
+
+  // useEffect(() => {
+  //   if (userStat) {
+  //     document.body.addEventListener('click', () => {
+  //       setUserStat(false);
+  //     });
+  //   }
+  // }, [userStat]);
+
   return (
     <header>
       <Navbar bg="light" expand="lg">
@@ -23,8 +35,10 @@ const Header = () => {
               <Nav.Link>Home</Nav.Link>
             </LinkContainer>
 
-            <LinkContainer to="/">
-              <Nav.Link>Link</Nav.Link>
+            <LinkContainer to="/" exact>
+                <Logout
+                  setIsLogin={setIsLogin}
+                />
             </LinkContainer>
               
             </Nav>
@@ -32,6 +46,7 @@ const Header = () => {
 
         </Container>
       </Navbar>
+      
     </header>
 
   );

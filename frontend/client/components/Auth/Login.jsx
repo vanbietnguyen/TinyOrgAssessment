@@ -1,10 +1,10 @@
 import React, { component, useEffect, useState } from 'react';
 import '../../bootstrap.min.css'
 import { Container, Form, Button, Col, Row } from 'react-bootstrap'
-import AuthForm  from '../Auth/AuthForm'
-import AllergenSelect from '../Auth/AllergenSelect'
+import AuthForm  from './AuthForm'
+import AllergenSelect from './AllergenSelect'
 import { Link, Redirect } from 'react-router-dom';
-import UserDbService from '../../services/TokenService';
+import TokenService from '../../services/TokenService';
 import TokenStorage from '../../db/token'
 const tokenStorage = new TokenStorage();
 
@@ -18,18 +18,18 @@ const Login = ( {Location, history }) => {
     // const [field, setField] = useState([]);
     
       const postLogin = async () => {
-        console.log('postsignin')
-        const result = await UserDbService.postUserData('/api/users/login/', {
+
+        const result = await TokenService.postUserData('/api/users/login/', {
             username: username, 
             password: password
         });
 
+        console.log(result.access, 'resultaccess')
         
         if (result.access) {
-            console.log(result, 'result')
-            console.log(result.allergens, 'allergens')
             tokenStorage.saveToken(result.access, result.allergens);
-            return setIsAuthenticated(true);
+            setIsAuthenticated(true);
+            return <Redirect to='/main' />;
           }
 
         setPassword('')
@@ -39,12 +39,12 @@ const Login = ( {Location, history }) => {
 
     const loginHandler = (e) => {
         e.preventDefault()
-
         if (!username || !password) return setShowError(true);
         postLogin();
     };
   
   if (isAuthenticated) {
+    window.location.reload()
     return <Redirect to='/main' />;
   }
 
@@ -77,8 +77,6 @@ const Login = ( {Location, history }) => {
                 </Form.Control>
 
             </Form.Group>
-
-            <AllergenSelect />
 
             <Button type='submit' variant='primary'>Log in</Button>
         </Form>
