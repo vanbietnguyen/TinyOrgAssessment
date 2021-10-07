@@ -21,6 +21,7 @@ const Home = () => {
 
     const recipes = await RecipesService.getRecipes('/api/recipes');
     let allergens = await TokenService.getUserAllergens()
+    let firstName = await TokenService.getFirstName()
     let allergensArray = allergens.split(',')
     
     if(allergens) {

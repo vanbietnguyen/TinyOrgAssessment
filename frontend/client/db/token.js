@@ -4,9 +4,11 @@ const FIRSTNAME = 'firstName'
 const BFIRSTNAME = 'bFirstName'
 
 export default class TokenStorage {
-  saveToken(token, allergen) {
+  saveToken(token, allergen, firstName, bFirstName) {
     localStorage.setItem(TOKEN, token);
     localStorage.setItem(ALLERGEN, allergen);
+    localStorage.setItem(FIRSTNAME, firstName),
+    localStorage.setItem(BFIRSTNAME, bFirstName);
   }
 
   getToken() {

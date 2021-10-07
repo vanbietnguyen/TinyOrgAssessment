@@ -21,7 +21,6 @@ const App = () => {
       <Router>
         <Header 
           isLogin={isLogin}
-          setIsLogin={setIsLogin}
         />
         <main className="py-3">
 

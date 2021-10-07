@@ -5,20 +5,26 @@ import { LinkContainer } from 'react-router-bootstrap'
 import Logout from '../Auth/Logout'
 import TokenService from '../../services/TokenService';
 
-const Header = ({ isLogin, setIsLogin }) => {
+const Header = ({ isLogin }) => {
 
   const [firstName, setFirstName] = useState('');
   const [bFirstName, setBFirstName] = useState('');
   const [isToken, setIsToken] = useState(false);
+
   useEffect(async () => {
+
     let token = await TokenService.getUserToken()
-    if(token) {
-      setIsToken(true)
-      let firstName = TokenService.getFirstName()
-      let bFirstName = TokenService.getBFirstName()
-      setFirstName(firstName)
-      setBFirstName(bFirstName)
-    } 
+
+    if(token) setIsToken(true)
+    else return
+
+    let result = await TokenService.getFirstName()
+    let resultBb = await TokenService.getBFirstName()
+    console.log(result, 'result')
+    console.log(resultBb)
+    if(result) setFirstName(result);
+    if(resultBb) setBFirstName(resultBb)
+     
   }, []);
 
   return (
@@ -44,7 +50,7 @@ const Header = ({ isLogin, setIsLogin }) => {
 
             <LinkContainer to="/" exact>
                 <Logout
-                  setIsLogin={setIsLogin}
+                  isToken={isToken}
                 />
             </LinkContainer>
               

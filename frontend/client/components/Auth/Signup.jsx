@@ -56,7 +56,7 @@ const Signup = () => {
         if(!allergens) setAllergens(['none'])
 
         const result = await TokenService.postUserData('/api/users/signup/', {
-            name: username,
+            username,
             email: email, 
             firstName: firstName,
             lastName: lastName,
@@ -97,6 +97,8 @@ const Signup = () => {
                 <Form.Control
                   type='username'
                   // placeholder='Enter username'
+                  placeholder={`required`}
+                  required
                   value={username}
                   onChange={(e)=> setUsername(e.target.value)}
                 >
@@ -110,6 +112,8 @@ const Signup = () => {
                 <Form.Control
                   type='text'
                   // placeholder='Enter first name'
+                  required
+                  placeholder={`required`}
                   value={firstName}
                   onChange={(e)=> setfirstName(e.target.value)}
                 >
@@ -135,7 +139,8 @@ const Signup = () => {
                 <Form.Label> baby's first name</Form.Label>
                 <Form.Control
                   type='text'
-                  // placeholder={`Enter baby's first name`}
+                  required
+                  placeholder={`required`}
                   value={bFirstName}
                   onChange={(e)=> setbFirstName(e.target.value)}
                 >
@@ -163,6 +168,8 @@ const Signup = () => {
                 <Form.Control
                   type='email'
                   // placeholder='Enter email'
+                  required
+                  placeholder={`required`}
                   value={email}
                   onChange={(e)=> setEmail(e.target.value)}
                 >
@@ -176,6 +183,8 @@ const Signup = () => {
                 <Form.Control
                   type='password'
                   // placeholder='Enter password'
+                  required
+                  placeholder={`required`}
                   value={password}
                   onChange={(e)=> setPassword(e.target.value)}
                 >

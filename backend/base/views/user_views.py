@@ -40,7 +40,7 @@ def signupUser(request):
     User = get_user_model()
     try:
         user = User.objects.create_user(
-            username = data['username'],
+            data['username'],
             firstName = data['firstName'],
             lastName = data['lastName'],
             bFirstName = data['bFirstName'],
@@ -55,20 +55,6 @@ def signupUser(request):
     except:
         message = { 'detail': 'User with this email already exists' }
         return Response(message, status = status.HTTP_400_BAD_REQUEST)
-
-# @api_view(['POST'])
-# def loginUser(request):
-#     print('in loginview')
-#     # data = request.data
-#     # serializer = UserSerializerWithToken(user, many = False)
-#     # return Response(serializer.data)
-#     return Response('data')
-
-# @api_view(['GET'])
-# def getUserProfile(request):
-#     user = request.user
-#     serializer = UserSerializer(user, many=False)
-#     return Response(serializer.data)
 
 # from django.contrib.auth import get_user_model
 # User = get_user_model()
