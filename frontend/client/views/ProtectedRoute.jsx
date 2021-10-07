@@ -9,10 +9,13 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
   if (token) isToken = true;
 
   return (
-    <Route
-      {...rest}
-      render={() => (isToken ? <Component {...rest} /> : <Redirect to='/' />)}
-    />
+    <div>
+            <Route {...rest} render={props => (
+                isToken ?
+                <Component  {...props} />: 
+                <Redirect exact from="/main" to="/" />
+            )} />
+        </div>
   );
 };
 

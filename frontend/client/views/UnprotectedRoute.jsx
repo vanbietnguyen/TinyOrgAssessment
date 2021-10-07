@@ -3,19 +3,23 @@ import { Redirect, Route } from 'react-router-dom';
 import TokenStorage from '../db/token';
 const tokenStorageService = new TokenStorage();
 
-const UnProtectedRoute = ({ component: Component, ...rest }) => {
-  const token = tokenStorageService.getToken();
+const UnprotectedRoute = ({ component: Component, ...rest }) => {
+  
   let isToken = false;
-  if (token) isToken = true;
-
+  const token = tokenStorageService.getToken();
+  if (token) {
+    isToken = true;
+    console.log(isToken, 'istoken')
+  }
+  
   return (
     <Route
       {...rest}
       render={() =>
-        isToken ? <Redirect to='/main' /> : <Component {...rest} />
+        token ? <Redirect to='/main' /> : <Component {...rest} />
       }
     />
   );
 };
 
-export default UnProtectedRoute;
+export default UnprotectedRoute;

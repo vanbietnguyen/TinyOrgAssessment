@@ -2,11 +2,12 @@ import axios from 'axios';
 import TokenStorage from '../db/token';
 const tokenStorageService = new TokenStorage();
 
-class UserDbService {
+class TokenService {
   static async postUserData(url, userData) {
     try {
       console.log(userData, 'userdata in postuserdata')
       let result = await axios.post(url, userData);
+      console.log(result.data)
       return result.data;
     } catch (error) {
       console.log('this error is from User Service: ', error);
@@ -14,13 +15,24 @@ class UserDbService {
     }
   }
 
-  static async getUserToken(url) {
-    const token = tokenStorageService.getToken();
+  static async getUserAllergens() {
     try {
-      const result = await axios.get(url, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      return result.data;
+      const token = tokenStorageService.getToken();
+      if(token) {
+        const allergens = tokenStorageService.getAllergen()
+        return allergens
+      }
+      
+    } catch (error) {
+      console.log('There was an error getting user token: ', error);
+      return { error: 'unauthenticated' };
+    }
+  }
+
+  static async getUserToken() {
+    try {
+      const token = tokenStorageService.getToken();
+      return token
     } catch (error) {
       console.log('There was an error getting user token: ', error);
       return { error: 'unauthenticated' };
@@ -32,4 +44,4 @@ class UserDbService {
   }
 }
 
-export default UserDbService;
+export default TokenService;
