@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../../bootstrap.min.css'
 import { Navbar, Nav, NavDropdown, Container, Row, NavText } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
+import { Link } from 'react-router-dom'
 import Logout from '../Auth/Logout'
 import TokenService from '../../services/TokenService';
 
@@ -48,11 +49,11 @@ const Header = ({ isLogin }) => {
               <Nav.Link>Home</Nav.Link>
             </LinkContainer>
 
-            <LinkContainer to="/" exact>
+            <Link to="/" exact>
                 <Logout
                   isToken={isToken}
                 />
-            </LinkContainer>
+            </Link>
               
             </Nav>
           </Navbar.Collapse>
