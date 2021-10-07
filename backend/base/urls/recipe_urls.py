@@ -4,7 +4,7 @@ from base.views import recipe_views as views
 
 urlpatterns = [
 
-    path('', views.getRecipes, name='ingredients'),
-    path('<str:pk>/', views.getRecipe, name='recipe'),
+    path('', views.getRecipes, name='recipes'),
+    path('allergens/', views.getAllergens, name='allergens'),
 
 ]

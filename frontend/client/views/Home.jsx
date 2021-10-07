@@ -5,12 +5,12 @@ import '../bootstrap.min.css'
 import { Container } from 'react-bootstrap'
 import TokenService from '../services/TokenService';
 
-const Home = ({ setIsLogin }) => {
+const Home = () => {
   const [recList, setRecList] = useState([]);
-
+  
   useEffect(async () => {
     let token = await TokenService.getUserToken()
-    if(token) return setIsLogin(true);
+    if(token) return 
     return TokenService.logout()
   }, []);
 
@@ -21,13 +21,16 @@ const Home = ({ setIsLogin }) => {
 
     const recipes = await RecipesService.getRecipes('/api/recipes');
     let allergens = await TokenService.getUserAllergens()
+    let firstName = await TokenService.getFirstName()
+    let allergensArray = allergens.split(',')
+    
     if(allergens) {
       let parsedRecipes = recipes.reduce((acc, curr) => {
 
           let isBad = false
     
           if(!acc.includes(curr)) {
-            for(let allergen of allergens) {
+            for(let allergen of allergensArray) {
               if(curr.allergens.includes(allergen)) isBad = true
             }
           }

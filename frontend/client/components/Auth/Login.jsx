@@ -23,10 +23,10 @@ const Login = ( {Location, history }) => {
             password: password
         });
 
-        console.log(result.access, 'resultaccess')
+        
         
         if (result.access) {
-            tokenStorage.saveToken(result.access, result.allergens);
+            tokenStorage.saveToken(result.access, result.allergens, result.firstName, result.bFirstName);
             setIsAuthenticated(true);
             return <Redirect to='/main' />;
           }

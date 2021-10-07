@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from django.contrib.auth.models import User
-from .models import Recipe, CustomUser
+from .models import Allergen, Recipe, CustomUser
 from rest_framework_simplejwt.tokens import RefreshToken
 
 class RecipeSerializer(ModelSerializer):
@@ -8,6 +8,10 @@ class RecipeSerializer(ModelSerializer):
         model = Recipe
         fields = '__all__'
 
+class AllergenSerializer(ModelSerializer):
+    class Meta:
+        model = Allergen
+        fields = '__all__'
 
 class UserSerializer(ModelSerializer):
     _id = SerializerMethodField(read_only=True)
