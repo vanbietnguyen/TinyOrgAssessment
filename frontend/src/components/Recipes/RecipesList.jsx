@@ -1,7 +1,7 @@
-import React, { component, useState, useEffect } from 'react';
+import React from 'react';
 import Recipe from './Recipe'
 import '../../bootstrap.min.css'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Row } from 'react-bootstrap'
 
 const RecipesList = ({recList}) => {
 

@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { component } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import TokenStorage from '../db/token';

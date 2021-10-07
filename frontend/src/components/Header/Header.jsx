@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../../bootstrap.min.css'
-import { Navbar, Nav, NavDropdown, Container, Row, NavText } from 'react-bootstrap'
+import { Navbar, Nav, Container } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Link } from 'react-router-dom'
 import Logout from '../Auth/Logout'
@@ -12,17 +12,17 @@ const Header = ({ isLogin }) => {
   const [bFirstName, setBFirstName] = useState('');
   const [isToken, setIsToken] = useState(false);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
 
     let token = await TokenService.getUserToken()
 
     if(token) setIsToken(true)
     else return
-
+    
     let result = await TokenService.getFirstName()
     let resultBb = await TokenService.getBFirstName()
-    console.log(result, 'result')
-    console.log(resultBb)
+
     if(result) setFirstName(result);
     if(resultBb) setBFirstName(resultBb)
      

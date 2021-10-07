@@ -1,4 +1,4 @@
-import React, { component, useEffect, useState } from 'react';
+import React from 'react';
 import '../../bootstrap.min.css'
 import { Container, Row, Col } from 'react-bootstrap'
 
