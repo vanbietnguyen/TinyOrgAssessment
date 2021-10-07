@@ -23,6 +23,8 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         data['username'] = self.user.username
         data['email'] = self.user.email
         data['allergens'] = self.user.allergens
+        data['firstName'] = self.user.username
+        data['bFirstName'] = self.user.email
         # ...
 
         return data
@@ -39,6 +41,10 @@ def signupUser(request):
     try:
         user = User.objects.create_user(
             username = data['username'],
+            firstName = data['firstName'],
+            lastName = data['lastName'],
+            bFirstName = data['bFirstName'],
+            bLastName = data['bLastName'],
             email = data['email'],
             allergens = data['allergens'],
             password = data['password']
