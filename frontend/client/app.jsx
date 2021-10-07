@@ -15,7 +15,7 @@ import './global.scss';
 const App = () => {
 
   const [isLogin, setIsLogin] = useState(false);
-
+  console.log(isLogin)
   return (
     
       <Router>
@@ -30,8 +30,8 @@ const App = () => {
             <ProtectedRoute 
               path="/main" 
               component={Home} 
-              isLogin={isLogin}
-              setIsLogin={setIsLogin}
+              // isLogin={isLogin}
+              // setLogin={setIsLogin}
             />
             <ProtectedRoute path="/recipes/:id" component={RecipePage} />
             <UnprotectedRoute path="/" component={Login} exact/>

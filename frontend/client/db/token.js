@@ -1,5 +1,7 @@
 const TOKEN = 'token';
 const ALLERGEN = 'allergen'
+const FIRSTNAME = 'firstName'
+const BFIRSTNAME = 'bFirstName'
 
 export default class TokenStorage {
   saveToken(token, allergen) {
@@ -13,6 +15,14 @@ export default class TokenStorage {
 
   getAllergen() {
     return localStorage.getItem(ALLERGEN);
+  }
+
+  getFirstName() {
+    return localStorage.getItem(FIRSTNAME);
+  }
+
+  getBFirstName() {
+    return localStorage.getItem(BFIRSTNAME);
   }
 
   clearToken() {

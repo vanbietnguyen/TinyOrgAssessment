@@ -33,10 +33,6 @@ const RecipePage = ({ match }) => {
 
   }, []);
 
-    // const allergenDiv = 
-  
-
-
   return (
 
         <Card className="my-3 p-3 rounded justify-content-md-center">

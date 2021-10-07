@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import '../../bootstrap.min.css'
-import { Navbar, Nav, NavDropdown, Container, Row } from 'react-bootstrap'
+import { Navbar, Nav, NavDropdown, Container, Row, NavText } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import Logout from '../Auth/Logout'
+import TokenService from '../../services/TokenService';
 
 const Header = ({ isLogin, setIsLogin }) => {
 
-  const [userStat, setUserStat] = useState(false);
-
-  // useEffect(() => {
-  //   if (userStat) {
-  //     document.body.addEventListener('click', () => {
-  //       setUserStat(false);
-  //     });
-  //   }
-  // }, [userStat]);
+  const [firstName, setFirstName] = useState('');
+  const [bFirstName, setBFirstName] = useState('');
+  const [isToken, setIsToken] = useState(false);
+  useEffect(async () => {
+    let token = await TokenService.getUserToken()
+    if(token) {
+      setIsToken(true)
+      let firstName = TokenService.getFirstName()
+      let bFirstName = TokenService.getBFirstName()
+      setFirstName(firstName)
+      setBFirstName(bFirstName)
+    } 
+  }, []);
 
   return (
     <header>
@@ -22,9 +27,11 @@ const Header = ({ isLogin, setIsLogin }) => {
         <Container>
 
           <LinkContainer to="/main">
-            <Navbar.Brand src="https://cdn.shopify.com/s/files/1/0018/4650/9667/files/Tiny-Logos-ALL-01_1_6f7a4e61-2612-4f4b-8327-62b0ed2413be_180x.png?v=1624156432">Tiny Organics</Navbar.Brand>
+            <Navbar.Brand>Tiny Organics</Navbar.Brand>
             
           </LinkContainer>
+
+          <p> {isToken ? `Hi ${firstName} and ${bFirstName}` : `Welcome!`} </p>
           
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
 

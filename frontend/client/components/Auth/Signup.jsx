@@ -3,6 +3,7 @@ import '../../bootstrap.min.css'
 import { Container, Form, Button, Col, Row, Card } from 'react-bootstrap'
 import AuthForm  from './AuthForm'
 import { Link, Redirect } from 'react-router-dom';
+import RecipesService from '../../services/RecipesService'
 import TokenService from '../../services/TokenService';
 import TokenStorage from '../../db/token'
 const tokenStorage = new TokenStorage();
@@ -11,12 +12,27 @@ const tokenStorage = new TokenStorage();
 const Signup = () => {
 
     const [ username, setUsername ] = useState('')
+    const [ firstName, setfirstName ] = useState('')
+    const [ lastName, setlastName ] = useState('')
+    const [ bFirstName, setbFirstName ] = useState('')
+    const [ bLastName, setbLastName ] = useState('')
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [showError, setShowError] = useState(false);
-    // const [field, setField] = useState([]);
     const [ allergens, setAllergens ] = useState([])
+    const [ allergenList, setAllergenList ] = useState([])
+    
+    useEffect(async () => {
+      const result = await RecipesService.getRecipes('/api/recipes/allergens');
+      
+      let list = result.reduce((acc, curr) => {
+        acc.push(curr.name)
+        return acc
+      }, [])
+      
+      setAllergenList(list)
+    }, []);
 
     const allergenHandler = (e) => {
  
@@ -40,8 +56,12 @@ const Signup = () => {
         if(!allergens) setAllergens(['none'])
 
         const result = await TokenService.postUserData('/api/users/signup/', {
-            username: username,
+            name: username,
             email: email, 
+            firstName: firstName,
+            lastName: lastName,
+            bFirstName: bFirstName,
+            bLastName: bLastName,
             password: password,
             allergens: allergens
         });
@@ -72,11 +92,11 @@ const Signup = () => {
     <AuthForm>
         <h1>Sign up</h1>
         <Form onSubmit={SignupHandler}>
-            <Form.Group controlId='username'>
+            <Form.Group className='my-3' controlId='username'>
                 <Form.Label> Username</Form.Label>
                 <Form.Control
                   type='username'
-                  placeholder='Enter username'
+                  // placeholder='Enter username'
                   value={username}
                   onChange={(e)=> setUsername(e.target.value)}
                 >
@@ -85,11 +105,64 @@ const Signup = () => {
 
             </Form.Group>
 
-            <Form.Group controlId='email'>
+            <Form.Group className='my-3' controlId='first_name'>
+                <Form.Label> first name</Form.Label>
+                <Form.Control
+                  type='text'
+                  // placeholder='Enter first name'
+                  value={firstName}
+                  onChange={(e)=> setfirstName(e.target.value)}
+                >
+
+                </Form.Control>
+
+            </Form.Group>
+
+            <Form.Group className='my-3' controlId='first_name'>
+                <Form.Label> last name</Form.Label>
+                <Form.Control
+                  type='text'
+                  // placeholder='Enter last name'
+                  value={lastName}
+                  onChange={(e)=> setlastName(e.target.value)}
+                >
+
+                </Form.Control>
+
+            </Form.Group>
+
+            <Form.Group className='my-3' controlId='babyfname'>
+                <Form.Label> baby's first name</Form.Label>
+                <Form.Control
+                  type='text'
+                  // placeholder={`Enter baby's first name`}
+                  value={bFirstName}
+                  onChange={(e)=> setbFirstName(e.target.value)}
+                >
+
+                </Form.Control>
+
+            </Form.Group>
+
+            <Form.Group className='my-3' controlId='babylname'>
+                <Form.Label> baby's last name</Form.Label>
+                <Form.Control
+                  type='text'
+                  // placeholder={`Enter baby's last name`}
+                  value={bLastName}
+                  onChange={(e)=> setbLastName(e.target.value)}
+                >
+
+                </Form.Control>
+
+            </Form.Group>
+
+
+            <Form.Group className='my-3' controlId='email'>
                 <Form.Label> email</Form.Label>
                 <Form.Control
                   type='email'
-                  placeholder='Enter email'
+                  // placeholder='Enter email'
                   value={email}
                   onChange={(e)=> setEmail(e.target.value)}
                 >
@@ -98,11 +171,11 @@ const Signup = () => {
 
             </Form.Group>
 
-            <Form.Group controlId='password'>
-                <Form.Label>Password</Form.Label>
+            <Form.Group className='my-3' controlId='password'>
+                <Form.Label> password</Form.Label>
                 <Form.Control
                   type='password'
-                  placeholder='Enter password'
+                  // placeholder='Enter password'
                   value={password}
                   onChange={(e)=> setPassword(e.target.value)}
                 >
@@ -114,7 +187,7 @@ const Signup = () => {
            
             <Card className="p-2 m-2">
                 <Form.Group multiple className="mb-3" onChange={allergenHandler}>
-                    {['soybean', 'milk', 'cinnamon'].map((allergen, i) => (
+                    {allergenList.map((allergen, i) => (
                         <div key={i} className="mb-3">
                             <Form.Check 
                                 type='checkbox'
