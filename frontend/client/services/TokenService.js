@@ -5,7 +5,6 @@ const tokenStorageService = new TokenStorage();
 class TokenService {
   static async postUserData(url, userData) {
     try {
-      console.log(userData, 'userdata in postuserdata')
       let result = await axios.post(url, userData);
       console.log(result.data)
       return result.data;

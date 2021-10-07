@@ -2,7 +2,6 @@ import React, { component, useEffect, useState } from 'react';
 import '../../bootstrap.min.css'
 import { Container, Form, Button, Col, Row } from 'react-bootstrap'
 import AuthForm  from './AuthForm'
-import AllergenSelect from './AllergenSelect'
 import { Link, Redirect } from 'react-router-dom';
 import TokenService from '../../services/TokenService';
 import TokenStorage from '../../db/token'
@@ -55,10 +54,10 @@ const Login = ( {Location, history }) => {
             <Form.Group controlId='email'>
                 <Form.Label> Username</Form.Label>
                 <Form.Control
-                    type='username'
-                    placeholder='Enter username'
-                    value={username}
-                    onChange={(e)=> setUsername(e.target.value)}
+                  type='username'
+                  placeholder='Enter username'
+                  value={username}
+                  onChange={(e)=> setUsername(e.target.value)}
                 >
 
                 </Form.Control>
@@ -68,22 +67,25 @@ const Login = ( {Location, history }) => {
             <Form.Group controlId='password'>
                 <Form.Label>Password</Form.Label>
                 <Form.Control
-                    type='password'
-                    placeholder='Enter password'
-                    value={password}
-                    onChange={(e)=> setPassword(e.target.value)}
+                  type='password'
+                  placeholder='Enter password'
+                  value={password}
+                  onChange={(e)=> setPassword(e.target.value)}
                 >
 
                 </Form.Control>
 
             </Form.Group>
 
-            <Button type='submit' variant='primary'>Log in</Button>
+            <Button type='submit' className="mt-1"variant='primary'>Log in</Button>
         </Form>
 
         <Row>
             <Col>
-                <Button className='' onClick={(e) => signUpHandler()}> Register </ Button>
+              <Link to='/signup'>
+                <Button className="mt-1" > Sign up </ Button>
+              </Link>
+                
             </Col>
         </Row>
     </AuthForm>

@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import RecipePage from './components/Recipes/RecipePage';
 import Login from './components/Auth/Login';
+import Signup from './components/Auth/Signup';
 import Home from './views/Home'
 import ProtectedRoute from './views/ProtectedRoute'
 import UnprotectedRoute from './views/UnprotectedRoute'
@@ -34,6 +35,7 @@ const App = () => {
             />
             <ProtectedRoute path="/recipes/:id" component={RecipePage} />
             <UnprotectedRoute path="/" component={Login} exact/>
+            <UnprotectedRoute path="/signup" component={Signup} exact/>
           </Container>
 
         </main>
