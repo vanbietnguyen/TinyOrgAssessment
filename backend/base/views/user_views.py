@@ -41,7 +41,7 @@ def signupUser(request):
             username = data['username'],
             email = data['email'],
             allergens = data['allergens'],
-            password = make_password(data['password'])
+            password = data['password']
         )
 
         serializer = UserSerializerWithToken(user, many = False)
