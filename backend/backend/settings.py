@@ -92,7 +92,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'frontend/build'
+            BASE_DIR / '../build'
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -174,7 +174,7 @@ MEDIA_URL = '/images/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
-    BASE_DIR / 'frontend/build/static/'
+    BASE_DIR / '../build/static/'
 ]
 
 
@@ -194,8 +194,8 @@ CORS_ALLOW_ALL_ORIGINS = True
 #     'http://localhost:8080'
 # ]
 
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 
 AWS_ACCESS_KEY_ID = 'AKIA2J2C4TEEGDGYC2V5'
 # AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
