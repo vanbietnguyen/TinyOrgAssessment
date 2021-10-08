@@ -23,8 +23,8 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         data['username'] = self.user.username
         data['email'] = self.user.email
         data['allergens'] = self.user.allergens
-        data['firstName'] = self.user.username
-        data['bFirstName'] = self.user.email
+        data['firstName'] = self.user.firstName
+        data['bFirstName'] = self.user.bFirstName
         # ...
 
         return data
