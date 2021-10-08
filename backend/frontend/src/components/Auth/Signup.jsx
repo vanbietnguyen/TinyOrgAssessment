@@ -72,7 +72,7 @@ const Signup = () => {
 
         console.log(result, 'result')
         if (result.token) {
-            tokenStorage.saveToken(result.token, result.allergens);
+            tokenStorage.saveToken(result.token, result.allergens, result.firstName, result.bFirstName);
             setIsAuthenticated(true);
           }
 
