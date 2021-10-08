@@ -92,7 +92,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / '../build'
+            BASE_DIR / 'build'
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -174,7 +174,7 @@ MEDIA_URL = '/images/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
-    BASE_DIR / '../build/static/'
+    BASE_DIR / 'build/static/'
 ]
 
 
