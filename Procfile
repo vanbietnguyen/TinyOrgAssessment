@@ -1,1 +1,1 @@
-web: gunicorn TINYORGANICS.wsgi:backend --log-file - --log-level debug
+web: gunicorn backend.wsgi --log-file-
