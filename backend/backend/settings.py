@@ -1,5 +1,6 @@
 from pathlib import Path
 from datetime import timedelta
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -13,9 +14,9 @@ SECRET_KEY = 'django-insecure-z)*4zd%@#^le)arc=)#(pfk3e^dhq1d5-x=-n*ot3lc=*2&n))
 AUTH_USER_MODEL = 'base.CustomUser'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'tiny-org-assessment.herokuapp.com']
 
 # Application definition
 INSTALLED_APPS = [
@@ -72,6 +73,7 @@ SIMPLE_JWT = {
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     # "django.middleware.common.CommonMiddleware",
 
     'django.middleware.security.SecurityMiddleware',
@@ -121,7 +123,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'diuzczwh',
         'USER': 'diuzczwh',
-        'PASSWORD': 'RoNWBqYiJT6P-o5acTEH6a5btfRtvPZb',
+        'PASSWORD': os.environ.get('DB_PASS'),
         'HOST': 'chunee.db.elephantsql.com',
         'PORT': '5432'
     }
@@ -176,7 +178,7 @@ STATICFILES_DIRS = [
 
 
 MEDIA_ROOT = BASE_DIR / 'static/images'
-STATIC_ROOT = BASE_DIR / 'staticfiles/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 # Default primary key field type
@@ -193,8 +195,13 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-AWS_ACCESS_KEY_ID = 'AKIA2J2C4TEEGDGYC2V5'
-AWS_SECRET_ACCESS_KEY = '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'
+
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+
 AWS_STORAGE_BUCKET_NAME = 'tinyorgs-bucket'
 
+
+if os.getcwd() == '/app':
+    DEBUG = False
 
