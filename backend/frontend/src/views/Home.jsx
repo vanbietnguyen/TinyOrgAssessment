@@ -9,6 +9,7 @@ import TokenService from '../services/TokenService';
 const Home = () => {
 
   const [recList, setRecList] = useState([]);
+  const [userAllergens, setUserAllergens] = useState('none')
   
   useEffect(async () => {
     let token = await TokenService.getUserToken()
@@ -25,7 +26,8 @@ const Home = () => {
     let allergens = await TokenService.getUserAllergens()
     let allergensArray = allergens.split(',')
     
-    if(allergens) {
+    if(allergens !== null) {
+      setUserAllergens(allergens) 
       let parsedRecipes = recipes.reduce((acc, curr) => {
 
           let isBad = false
@@ -47,6 +49,7 @@ const Home = () => {
 
   return (
     <main className="py-3">
+      <Container>{`allergens: ${userAllergens}`}</Container>
       <Container>
         <RecipesList recList={recList}/>
       </Container>

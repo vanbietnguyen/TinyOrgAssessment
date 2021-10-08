@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     # third party
     'rest_framework',
     'corsheaders',
+    'storages',
     # 'storages'
 
     # local apps
@@ -87,7 +88,9 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'frontend/build'
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -106,12 +109,24 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'diuzczwh',
+        'USER': 'diuzczwh',
+        'PASSWORD': 'RoNWBqYiJT6P-o5acTEH6a5btfRtvPZb',
+        'HOST': 'chunee.db.elephantsql.com',
+        'PORT': '5432'
     }
 }
+
 
 
 # Password validation
@@ -175,5 +190,11 @@ CORS_ALLOW_ALL_ORIGINS = True
 #     'http://localhost:3000',
 #     'http://localhost:8080'
 # ]
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_ACCESS_KEY_ID = 'AKIA2J2C4TEEGDGYC2V5'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'tinyorgs-bucket'
 
 
