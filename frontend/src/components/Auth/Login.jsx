@@ -1,6 +1,6 @@
-import React, { component, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../../bootstrap.min.css'
-import { Container, Form, Button, Col, Row } from 'react-bootstrap'
+import { Form, Button, Col, Row } from 'react-bootstrap'
 import AuthForm  from './AuthForm'
 import { Link, Redirect } from 'react-router-dom';
 import TokenService from '../../services/TokenService';
@@ -13,7 +13,6 @@ const Login = ( {Location, history }) => {
     const [ username, setUsername ] = useState('')
     const [ password, setPassword ] = useState('')
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [showError, setShowError] = useState(false);
     // const [field, setField] = useState([]);
     
       const postLogin = async () => {
@@ -32,13 +31,13 @@ const Login = ( {Location, history }) => {
           }
 
         setPassword('')
-        return setShowError(true);
+        return 
       };
       
 
     const loginHandler = (e) => {
         e.preventDefault()
-        if (!username || !password) return setShowError(true);
+        if (!username || !password) return 
         postLogin();
     };
   

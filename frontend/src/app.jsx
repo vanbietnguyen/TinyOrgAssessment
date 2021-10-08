@@ -1,4 +1,5 @@
-import React, { Suspense, lazy, useState, useEffect } from 'react';
+import React from 'react';
+// eslint-disable-next-line no-unused-vars
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -14,14 +15,11 @@ import './global.scss';
 
 const App = () => {
 
-  const [isLogin, setIsLogin] = useState(false);
-  console.log(isLogin)
+
   return (
     
       <Router>
-        <Header 
-          isLogin={isLogin}
-        />
+        <Header />
         <main className="py-3">
 
           <Container>

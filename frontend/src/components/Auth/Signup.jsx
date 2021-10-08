@@ -1,8 +1,8 @@
-import React, { component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../bootstrap.min.css'
-import { Container, Form, Button, Col, Row, Card } from 'react-bootstrap'
+import { Form, Button, Card } from 'react-bootstrap'
 import AuthForm  from './AuthForm'
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import RecipesService from '../../services/RecipesService'
 import TokenService from '../../services/TokenService';
 import TokenStorage from '../../db/token'
@@ -19,19 +19,23 @@ const Signup = () => {
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [showError, setShowError] = useState(false);
     const [ allergens, setAllergens ] = useState([])
     const [ allergenList, setAllergenList ] = useState([])
     
-    useEffect(async () => {
-      const result = await RecipesService.getRecipes('/api/recipes/allergens');
+    useEffect(() => {
+      const fetchRecipes = async () => {
+        const result = await RecipesService.getRecipes('/api/recipes/allergens');
       
-      let list = result.reduce((acc, curr) => {
-        acc.push(curr.name)
-        return acc
-      }, [])
+        let list = result.reduce((acc, curr) => {
+          acc.push(curr.name)
+          return acc
+        }, [])
+        
+        setAllergenList(list)
+      }
+
+      fetchRecipes()
       
-      setAllergenList(list)
     }, []);
 
     const allergenHandler = (e) => {
@@ -73,13 +77,13 @@ const Signup = () => {
           }
 
         setPassword('')
-        return setShowError(true);
+        return
       };
       
 
     const SignupHandler = (e) => {
         e.preventDefault()
-        if (!username || !password) return setShowError(true);
+        if (!username || !password) return
         postSignup();
     };
   

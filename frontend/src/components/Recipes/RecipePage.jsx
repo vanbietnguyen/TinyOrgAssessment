@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { component, useState, useEffect } from 'react';
 import '../../bootstrap.min.css'
 import RecipesService from '../../services/RecipesService';
-import { Container, Row, Col, Card, Image, ListGroup, Button } from 'react-bootstrap'
+import { Card,  } from 'react-bootstrap'
 
 
 
@@ -15,7 +17,7 @@ const RecipePage = ({ match }) => {
         // console.log(result, 'in recipe page')
         const recipe = await result.find((r) => {
             console.log(r)
-            return r._id == match.params.id
+            return r._id = match.params.id
           })
           setRecipe(recipe);
     }, []);
@@ -24,11 +26,11 @@ const RecipePage = ({ match }) => {
       const result = await RecipesService.getRecipes('/api/recipes');
       
       const recipe = await result.find((r) => {
+          // eslint-disable-next-line eqeqeq
           return r._id == match.params.id
         })
-
-        // setAllergens(recipe.allergen)
-        // recipe.allergens.map((a) => allergenArray.push(a))
+        
+        console.log(recipe)
         setAllergens(recipe.allergens)
 
   }, []);

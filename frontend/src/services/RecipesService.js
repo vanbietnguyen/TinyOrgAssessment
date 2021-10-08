@@ -1,10 +1,12 @@
 import axios from 'axios';
+const baseUrl = 'http://127.0.0.1:8000'
 
 class RecipesService {
 
   static async getRecipes(url) {
     try {
-      const result = await axios.get(url);
+      let newUrl = baseUrl + url
+      const result = await axios.get(newUrl);
       return result.data;
     } catch (error) {
       console.log(

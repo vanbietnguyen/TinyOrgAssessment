@@ -1,12 +1,13 @@
 import axios from 'axios';
 import TokenStorage from '../db/token';
 const tokenStorageService = new TokenStorage();
+const baseUrl = 'http://127.0.0.1:8000'
 
 class TokenService {
   static async postUserData(url, userData) {
-    console.log(userData)
+    let newUrl = baseUrl + url
     try {
-      let result = await axios.post(url, userData);
+      let result = await axios.post(newUrl, userData);
       console.log(result.data, 'here in tokenservice')
       return result.data;
     } catch (error) {
@@ -41,8 +42,7 @@ class TokenService {
 
   static async getFirstName() {
     try {
-      const token = tokenStorageService.getToken();
-      if(token) return tokenStorageService.getFirstName()
+      return tokenStorageService.getFirstName()
       
     } catch (error) {
       console.log('There was an error getting user token: ', error);
@@ -52,8 +52,7 @@ class TokenService {
 
   static async getBFirstName() {
     try {
-      const token = tokenStorageService.getToken();
-      if(token) return tokenStorageService.getBFirstName()
+      return tokenStorageService.getBFirstName()
     } catch (error) {
       console.log('There was an error getting user token: ', error);
       return { error: 'unauthenticated' };

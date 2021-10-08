@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../bootstrap.min.css'
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import TokenService from '../../services/TokenService';
 
 const Logout = ({ isToken }) => {

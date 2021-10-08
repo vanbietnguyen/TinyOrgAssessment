@@ -1,4 +1,5 @@
-import React, { component, useEffect, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react';
 import RecipesService from '../services/RecipesService';
 import RecipesList from '../components/Recipes/RecipesList'
 import '../bootstrap.min.css'
@@ -6,6 +7,7 @@ import { Container } from 'react-bootstrap'
 import TokenService from '../services/TokenService';
 
 const Home = () => {
+
   const [recList, setRecList] = useState([]);
   
   useEffect(async () => {
@@ -21,7 +23,6 @@ const Home = () => {
 
     const recipes = await RecipesService.getRecipes('/api/recipes');
     let allergens = await TokenService.getUserAllergens()
-    let firstName = await TokenService.getFirstName()
     let allergensArray = allergens.split(',')
     
     if(allergens) {
@@ -35,6 +36,7 @@ const Home = () => {
             }
           }
     
+          // eslint-disable-next-line no-unused-expressions
           isBad ? acc : acc.push(curr)
           return acc
         }, [])
