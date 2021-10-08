@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-z)*4zd%@#^le)arc=)#(pfk3e^dhq1d5-x=-n*ot3lc=*2&n))
 AUTH_USER_MODEL = 'base.CustomUser'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -32,7 +32,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'storages',
-    # 'storages'
 
     # local apps
     'base.apps.BaseConfig',
@@ -175,15 +174,12 @@ MEDIA_URL = '/images/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
-    BASE_DIR / '/build/static/'
+    BASE_DIR / 'build/static/'
 ]
 
 
 MEDIA_ROOT = BASE_DIR / 'static/images'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-# STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-
 
 
 # Default primary key field type
@@ -198,10 +194,13 @@ CORS_ALLOW_ALL_ORIGINS = True
 #     'http://localhost:8080'
 # ]
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
+# AWS_ACCESS_KEY_ID = 'AKIA2J2C4TEEGDGYC2V5'
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+
+# AWS_SECRET_ACCESS_KEY = 'Z0gVI371zJDestOqKRq7Yi/TisAA/G/wFNtMgwCA'
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
 AWS_STORAGE_BUCKET_NAME = 'tinyorgs-bucket'
