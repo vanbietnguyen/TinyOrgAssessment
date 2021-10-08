@@ -5,6 +5,8 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -180,7 +182,7 @@ STATICFILES_DIRS = [
 
 
 MEDIA_ROOT = BASE_DIR / 'static/images'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, 'backend/staticfiles')
 print(STATIC_ROOT, 'setaticroot')
 
 # Default primary key field type
@@ -209,3 +211,5 @@ AWS_STORAGE_BUCKET_NAME = 'tinyorgs-bucket'
 
 # if os.getcwd() == '/app':
 #     DEBUG = False
+
+
