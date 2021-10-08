@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-z)*4zd%@#^le)arc=)#(pfk3e^dhq1d5-x=-n*ot3lc=*2&n))
 AUTH_USER_MODEL = 'base.CustomUser'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -72,12 +72,12 @@ SIMPLE_JWT = {
 }
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    
     "corsheaders.middleware.CorsMiddleware",
     # 'whitenoise.middleware.WhiteNoiseMiddleware',
     # "django.middleware.common.CommonMiddleware",
     'django.middleware.security.SecurityMiddleware',
-    
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -207,5 +207,5 @@ AWS_SECRET_ACCESS_KEY = 'Z0gVI371zJDestOqKRq7Yi/TisAA/G/wFNtMgwCA'
 AWS_STORAGE_BUCKET_NAME = 'tinyorgs-bucket'
 
 
-if os.getcwd() == '/app':
-    DEBUG = False
+# if os.getcwd() == '/app':
+#     DEBUG = False
