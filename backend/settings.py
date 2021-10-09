@@ -117,9 +117,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'diuzczwh',
-        'USER': 'diuzczwh',
-        'PASSWORD': 'RoNWBqYiJT6P-o5acTEH6a5btfRtvPZb',
-        'HOST': 'chunee.db.elephantsql.com',
+        'USER': 'diuzczwhs',
+        'PASSWORD': os.environ.get('DB_PASS'),
+        'HOST': os.environ.get('DB_HOST'),
         'PORT': '5432'
     }
 }
@@ -190,9 +190,12 @@ CORS_ALLOW_ALL_ORIGINS = True
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-AWS_ACCESS_KEY_ID = 'AKIA2J2C4TEEGDGYC2V5'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'tinyorgs-bucket'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+# AWS_ACCESS_KEY_ID = 'AKIA2J2C4TEEGDGYC2V5'
+# AWS_SECRET_ACCESS_KEY = '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'
+# AWS_STORAGE_BUCKET_NAME = 'tinyorgs-bucket'
 
 if os.getcwd() == '/app':
     DEBUG = False
