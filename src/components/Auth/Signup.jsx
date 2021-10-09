@@ -140,7 +140,7 @@ const Signup = () => {
             </Form.Group>
 
             <Form.Group className='my-3' controlId='babyfname'>
-                <Form.Label> baby's first name</Form.Label>
+                <Form.Label> child's first name</Form.Label>
                 <Form.Control
                   type='text'
                   required
@@ -154,7 +154,7 @@ const Signup = () => {
             </Form.Group>
 
             <Form.Group className='my-3' controlId='babylname'>
-                <Form.Label> baby's last name</Form.Label>
+                <Form.Label> child's last name</Form.Label>
                 <Form.Control
                   type='text'
                   // placeholder={`Enter baby's last name`}
@@ -200,6 +200,7 @@ const Signup = () => {
            
             <Card className="p-2 m-2">
                 <Form.Group multiple className="mb-3" onChange={allergenHandler}>
+                <Form.Label> child's allergies</Form.Label>
                     {allergenList.map((allergen, i) => (
                         <div key={i} className="mb-3">
                             <Form.Check 
