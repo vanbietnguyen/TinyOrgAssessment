@@ -1,6 +1,6 @@
 {
   "name": "tinyorganicsassessment",
-  "homepage": "https://tiny-org-assessment.herokuapp.com/",
+  "homepage": "https://tiny-org-assessment.herokuapp.com",
   "version": "1.0.0",
   "description": "",
   "main": "server/app.js",
