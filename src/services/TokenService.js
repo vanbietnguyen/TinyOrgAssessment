@@ -1,13 +1,13 @@
 import axios from 'axios';
 import TokenStorage from '../db/token';
 const tokenStorageService = new TokenStorage();
-const baseUrl = 'http://127.0.0.1:8000'
+// const baseUrl = 'http://127.0.0.1:8000'
 
 class TokenService {
   static async postUserData(url, userData) {
-    let newUrl = baseUrl + url
+    // let newUrl = baseUrl + url
     try {
-      let result = await axios.post(newUrl, userData);
+      let result = await axios.post(url, userData);
       console.log(result.data, 'here in tokenservice')
       return result.data;
     } catch (error) {
